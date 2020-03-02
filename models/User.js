@@ -15,8 +15,9 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  avatar: {
-    type: String
+  house: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'House'
   },
   date: {
     type: Date,
@@ -29,4 +30,4 @@ UserSchema.methods.validatePassword = async function(inputPassword) {
   return this.password === hash;
 };
 
-module.exports = User = mongoose.model('user', UserSchema);
+module.exports = User = mongoose.model('User', UserSchema);
