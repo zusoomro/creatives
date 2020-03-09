@@ -4,6 +4,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 import { Reset } from 'styled-reset';
 import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
+import Alert from './components/layout/Alert';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
@@ -18,8 +19,9 @@ const App = () => (
       <React.Fragment>
         <GlobalStyle />
         <Navbar />
+        <Route exact path="/" component={Landing} />
         <Style.single_page>
-          <Route exact path="/" component={Landing} />
+          <Alert />
           <Switch>
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
