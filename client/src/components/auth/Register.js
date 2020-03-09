@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Style from '../css/Style';
+import axios from 'axios';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -14,12 +15,12 @@ const Register = () => {
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = e => {
+  const onSubmit = async e => {
     e.preventDefault();
     if (password !== password2) {
       console.log('passwords do not match');
     } else {
-      console.log(formData);
+      console.log('success');
     }
   };
 

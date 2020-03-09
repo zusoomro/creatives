@@ -15,9 +15,8 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  house: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'House'
+  avatar: {
+    type: String
   },
   date: {
     type: Date,

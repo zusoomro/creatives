@@ -8,21 +8,26 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Style from './components/css/Style';
+// Redux
+import store from './store';
+import { Provider } from 'react-redux';
 
 const App = () => (
-  <Router>
-    <React.Fragment>
-      <GlobalStyle />
-      <Navbar />
-      <Route exact path="/" component={Landing} />
-      <Style.single_page>
-        <Switch>
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/login" component={Login} />
-        </Switch>
-      </Style.single_page>
-    </React.Fragment>
-  </Router>
+  <Provider store={store}>
+    <Router>
+      <React.Fragment>
+        <GlobalStyle />
+        <Navbar />
+        <Style.single_page>
+          <Route exact path="/" component={Landing} />
+          <Switch>
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
+          </Switch>
+        </Style.single_page>
+      </React.Fragment>
+    </Router>
+  </Provider>
 );
 
 export default App;
@@ -32,6 +37,6 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Helvetica';
+    font-family: 'Roboto', sans-serif;
   }
 `;
