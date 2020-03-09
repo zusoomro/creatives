@@ -17,9 +17,9 @@
   "author": "Zulfiqar Soomro",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/zusoomro/solids/issues"
+    "url": "https://github.com/zusoomro/creatives/issues"
   },
-  "homepage": "https://github.com/zusoomro/solids#readme",
+  "homepage": "https://github.com/zusoomro/creatives#readme",
   "dependencies": {
     "axios": "^0.19.2",
     "bcrypt": "^4.0.0",
