@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alert';
 import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 
-const Register = ({ setAlert, register }) => {
+const Register = ({ setAlert, register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -26,6 +27,11 @@ const Register = ({ setAlert, register }) => {
       register({ name, email, password });
     }
   };
+
+  // Redirect if the user is already logged in
+  if (isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
 
   return (
     <Style.container>
@@ -79,4 +85,8 @@ Register.propTypes = {
   register: PropTypes.func.isRequired
 };
 
-export default connect(null, { setAlert, register })(Register);
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { setAlert, register })(Register);

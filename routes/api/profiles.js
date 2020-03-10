@@ -16,7 +16,7 @@ router.get('/me', auth, async (req, res) => {
 
     if (!profile) {
       // putting a return here terminates the function
-      return res.status(400).json({ msg: 'There is no profile for this user' });
+      return res.status(404).json({ msg: 'There is no profile for this user' });
     }
 
     res.json(profile);

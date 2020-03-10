@@ -5,7 +5,9 @@ import {
   USER_LOADED,
   AUTH_ERROR,
   LOGIN_SUCCESS,
-  LOGIN_FAIL
+  LOGIN_FAIL,
+  LOG_OUT,
+  CLEAR_PROFILE
 } from './types';
 import { setAlert } from './alert';
 import setAuthToken from '../utils/setAuthToken';
@@ -70,8 +72,6 @@ export const register = ({ name, email, password }) => async dispatch => {
 // We call load user after registering to get the user data into the
 // Redux store as soon as they register.
 export const login = (email, password) => async dispatch => {
-  console.log('Got to the register function.');
-
   const config = {
     headers: {
       'Content-Type': 'application/json'
@@ -100,4 +100,10 @@ export const login = (email, password) => async dispatch => {
       type: LOGIN_FAIL
     });
   }
+};
+
+// Log out
+export const logOut = () => dispatch => {
+  dispatch({ type: CLEAR_PROFILE });
+  dispatch({ type: LOG_OUT });
 };
