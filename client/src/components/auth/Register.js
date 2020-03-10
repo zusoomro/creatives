@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import Style from '../css/Style';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alert';
+import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
 
-const Register = ({ setAlert }) => {
+const Register = ({ setAlert, register }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -23,7 +23,7 @@ const Register = ({ setAlert }) => {
     if (password !== password2) {
       setAlert('passwords do not match', 'danger');
     } else {
-      console.log('success');
+      register({ name, email, password });
     }
   };
 
@@ -57,7 +57,7 @@ const Register = ({ setAlert }) => {
           type="password"
           value={password}
           onChange={e => onChange(e)}
-          required
+          minLength="6"
         />
 
         <Style.Label>Re-enter Password</Style.Label>
@@ -66,7 +66,7 @@ const Register = ({ setAlert }) => {
           type="password"
           value={password2}
           onChange={e => onChange(e)}
-          required
+          minLength="6"
         />
         <input type="submit" value="Submit"></input>
       </Style.Form>
@@ -75,7 +75,8 @@ const Register = ({ setAlert }) => {
 };
 
 Register.propTypes = {
-  setAlert: PropTypes.func.isRequired
+  setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired
 };
 
-export default connect(null, { setAlert })(Register);
+export default connect(null, { setAlert, register })(Register);

@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 const config = require('config');
 const bcrypt = require('bcrypt');
 
-// @desc    Test route
+// @desc    Get user item with a token.
 // @route   GET api/auth
 // @access  Private
 router.get('/', auth, async (req, res) => {
@@ -19,7 +19,6 @@ router.get('/', auth, async (req, res) => {
     console.error(err.message);
     res.status(500).json({ msg: 'Server error.' });
   }
-  res.send('Auth route');
 });
 
 // @desc    Authenticate a user and get a JWT token
@@ -39,8 +38,6 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    console.log(req.body);
-
     const { email, password } = req.body;
 
     try {
@@ -48,14 +45,18 @@ router.post(
 
       // Check to make sure that the user exists.
       if (!user) {
-        res.status(400).json({ errors: [{ msg: 'Invalid credentials.' }] });
+        return res
+          .status(400)
+          .json({ errors: [{ msg: 'Invalid credentials.' }] });
       }
 
       // Compare the given password to the user's password.
       const isMatch = await bcrypt.compare(password, user.password);
 
       if (!isMatch) {
-        res.send(400).json({ errors: [{ msg: 'Invalid credentials.' }] });
+        return res
+          .status(400)
+          .json({ errors: [{ msg: 'Invalid credentials.' }] });
       }
 
       // Return the jsonwebtoken

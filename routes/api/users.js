@@ -30,8 +30,6 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    console.log(req.body);
-
     const { name, email, password } = req.body;
 
     try {
@@ -39,7 +37,9 @@ router.post(
 
       // Check to make sure that the new user doesn't already exist
       if (user) {
-        res.status(400).json({ errors: [{ msg: 'User already exists' }] });
+        return res
+          .status(400)
+          .json({ errors: [{ msg: 'User already exists' }] });
       }
 
       // Get/create an avatar

@@ -12,3 +12,8 @@ A personal project of mine, Creatives is a social media website where contractor
 - Like and unlike posts
 - Make comments
 - Update your profile
+
+## TODO
+
+- style alerts
+- add theme
