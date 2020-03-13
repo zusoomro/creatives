@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Style from '../css/Style';
 import { createProfile } from '../../actions/profile';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+
+// Bootstrap Components
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 // withRouter and history are essential to being able to redirect within the
 // action function
@@ -29,72 +32,85 @@ const CreateProfile = ({ createProfile, history }) => {
   };
 
   return (
-    <div>
-      <Style.container>
-        <Style.Form onSubmit={e => onSubmit(e)}>
-          <h1>Register</h1>
-          <p> Heyo, register here! </p>
+    <React.Fragment>
+      <Form onSubmit={e => onSubmit(e)}>
+        <h1>Create a Profile</h1>
 
-          <Style.Label>Year</Style.Label>
-          <Style.Input
+        <Form.Group>
+          <Form.Label>Year</Form.Label>
+          <Form.Control
             name="year"
             type="text"
             value={year}
             onChange={e => onChange(e)}
           />
+        </Form.Group>
 
-          <Style.Label>Skills</Style.Label>
-          <Style.Input
+        <Form.Group>
+          <Form.Label>Skills</Form.Label>
+          <Form.Control
             name="skills"
             type="text"
             value={skills}
             onChange={e => onChange(e)}
           />
+        </Form.Group>
 
-          <Style.Label>Bio</Style.Label>
-          <Style.Input
+        <Form.Group>
+          <Form.Label>Bio</Form.Label>
+          <Form.Control
             name="bio"
             type="text"
             value={bio}
             onChange={e => onChange(e)}
           />
+        </Form.Group>
 
-          <Style.Label>Soundcloud</Style.Label>
-          <Style.Input
+        <Form.Group>
+          <Form.Label>Soundcloud</Form.Label>
+          <Form.Control
             name="soundcloud"
             type="text"
             value={soundcloud}
             onChange={e => onChange(e)}
           />
+        </Form.Group>
 
-          <Style.Label>Imgur</Style.Label>
-          <Style.Input
+        <Form.Group>
+          <Form.Label>Imgur</Form.Label>
+          <Form.Control
             name="imgur"
             type="text"
             value={imgur}
             onChange={e => onChange(e)}
           />
+        </Form.Group>
 
-          <Style.Label>Instagram</Style.Label>
-          <Style.Input
+        <Form.Group>
+          <Form.Label>Instagram</Form.Label>
+          <Form.Control
             name="instagram"
             type="text"
             value={instagram}
             onChange={e => onChange(e)}
           />
+        </Form.Group>
 
-          <Style.Label>Github</Style.Label>
-          <Style.Input
+        <Form.Group>
+          <Form.Label>Github</Form.Label>
+          <Form.Control
             name="github"
             type="text"
             value={github}
             onChange={e => onChange(e)}
           />
+        </Form.Group>
 
-          <input type="submit" value="Submit"></input>
-        </Style.Form>
-      </Style.container>
-    </div>
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
+    </React.Fragment>
   );
 };
 
@@ -102,4 +118,4 @@ CreateProfile.propTypes = {
   createProfile: PropTypes.func.isRequired
 };
 
-export default connect(null, { createProfile, withRouter })(CreateProfile);
+export default connect(null, { createProfile })(withRouter(CreateProfile));

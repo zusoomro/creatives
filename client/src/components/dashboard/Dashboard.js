@@ -1,13 +1,16 @@
 import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getCurrentProfile } from '../../actions/profile';
-import Spinner from '../layout/Spinner';
+import { getCurrentProfile, deleteAccount } from '../../actions/profile';
 import { Link } from 'react-router-dom';
-import { DashboardActions } from './DashboardActions';
+
+// Bootstrap Components
+import Spinner from 'react-bootstrap/Spinner';
+import Button from 'react-bootstrap/Button';
 
 const Dashboard = ({
   getCurrentProfile,
+  deleteAccount,
   auth: { user },
   profile: { profile, loading }
 }) => {
@@ -15,15 +18,22 @@ const Dashboard = ({
     getCurrentProfile();
   }, [getCurrentProfile]);
 
-  return loading && profile == null ? (
-    <Spinner />
+  return loading && !profile ? (
+    <Fragment>
+      <Spinner animation="border" />
+    </Fragment>
   ) : (
     <Fragment>
-      <h1>Dashboard</h1>
-      <p>User Icon, Welcome {user ? user.name : null}</p>
+      <h1 className="mt-5">Dashboard</h1>
+      <p>
+        <i className="fas fa-user"></i> Welcome, {user ? user.name : null}
+      </p>
       {profile != null ? (
         <Fragment>
-          <DashboardActions />
+          <Link to="/edit-profile">Edit your Profile</Link>
+          <Button variant="danger" onClick={() => deleteAccount()}>
+            Delete Your Account
+          </Button>
         </Fragment>
       ) : (
         <Fragment>
@@ -38,7 +48,8 @@ const Dashboard = ({
 Dashboard.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  deleteAccount: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -46,4 +57,6 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { getCurrentProfile })(Dashboard);
+export default connect(mapStateToProps, { getCurrentProfile, deleteAccount })(
+  Dashboard
+);

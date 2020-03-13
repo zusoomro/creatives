@@ -17,3 +17,5 @@ A personal project of mine, Creatives is a social media website where contractor
 
 - style alerts
 - add theme
+- create a mobile layout
+- delete styled components out of server package.json

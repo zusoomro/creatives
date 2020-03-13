@@ -2,17 +2,21 @@
 import React, { useEffect } from 'react';
 
 // Components
-import Navbar from './components/layout/Navbar';
+import NavbarComponent from './components/layout/NavbarComponent';
 import Landing from './components/layout/Landing';
-import Alert from './components/layout/Alert';
+import AlertComponent from './components/layout/AlertComponent';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Dashboard from './components/dashboard/Dashboard';
 import CreateProfile from './components/profile-forms/CreateProfile';
+import EditProfile from './components/profile-forms/EditProfile';
+import Container from 'react-bootstrap/Container';
+import Profiles from './components/profiles/Profiles';
+import Profile from './components/profile/Profile';
 
 // Styling
-import Style from './components/css/Style';
 import { createGlobalStyle } from 'styled-components';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Redux
 import store from './store';
@@ -44,21 +48,28 @@ const App = () => {
       <Router>
         <React.Fragment>
           <GlobalStyle />
-          <Navbar />
+          <NavbarComponent />
           <Route exact path="/" component={Landing} />
-          <Style.single_page>
-            <Alert />
+          <Container className="my-5">
+            <AlertComponent />
             <Switch>
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
+              <Route exact path="/profile/:id" component={Profile} />
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
               <PrivateRoute
                 exact
                 path="/create-profile"
                 component={CreateProfile}
               />
+              <PrivateRoute
+                exact
+                path="/edit-profile"
+                component={EditProfile}
+              />
+              <Route exact path="/profiles" component={Profiles} />
             </Switch>
-          </Style.single_page>
+          </Container>
         </React.Fragment>
       </Router>
     </Provider>
