@@ -21,3 +21,13 @@ A personal project of mine, Creatives is a social media website where contractor
 - clean up print statements
 - make small text in forms white
 - add padding to bottom of forms and pages
+- fix github links
+  - force http
+  - target blank
+
+### Goals
+
+- add soundcloud embed
+- make example profiles etc.
+- dm's
+- friends system
