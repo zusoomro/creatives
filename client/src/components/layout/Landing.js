@@ -1,9 +1,10 @@
-import React from 'react';
-import styled from 'styled-components';
-import Style from '../css/Style';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
+import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
 
 const Landing = ({ isAuthenticated }) => {
   if (isAuthenticated) {
@@ -11,13 +12,35 @@ const Landing = ({ isAuthenticated }) => {
   }
 
   return (
-    <Showcase>
-      <StyledH2>let's get creative</StyledH2>
-      <Style.row>
-        <Style.Button to="/login">log in</Style.Button>
-        <Style.Button to="/register">Sign up</Style.Button>
-      </Style.row>
-    </Showcase>
+    <Container
+      fluid
+      className="text-white bg-dark vh-100 d-flex justify-content-center align-items-center"
+      style={{
+        backgroundImage:
+          'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://source.unsplash.com/8SmWbHAdz_g/1600x900)',
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat'
+      }}
+    >
+      <div>
+        <h3 className="display-3 mx-2">Let's get creative.</h3>
+        <p style={{ maxWidth: 600 }} className="lead mx-2">
+          Creatives is a platform for artists and designers to connect. Discuss
+          what you've been working on or collaborate with other artists using
+          Creatives.
+        </p>
+
+        <div className="d-flex flex-column flex-sm-row align-items-sm-center ">
+          <Button as={Link} to="/login" className="m-2">
+            Log In
+          </Button>
+          <Button as={Link} to="/register" className="m-2">
+            Sign up
+          </Button>
+        </div>
+      </div>
+    </Container>
   );
 };
 
@@ -30,19 +53,3 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(Landing);
-
-const Showcase = styled(Style.single_page)`
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url(https://source.unsplash.com/8SmWbHAdz_g/1600x900) no-repeat center
-      center/cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  color: #fff;
-`;
-
-const StyledH2 = styled.h2`
-  font-size: 1.5rem;
-  margin: 0.5rem;
-`;

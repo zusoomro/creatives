@@ -5,6 +5,8 @@ import Spinner from 'react-bootstrap/Spinner';
 import Button from 'react-bootstrap/Button';
 import { getProfileById } from '../../actions/profile';
 import { Link } from 'react-router-dom';
+import ProfileTop from './ProfileTop';
+import ProfileAbout from './ProfileAbout.js';
 
 const Profile = ({
   match,
@@ -14,7 +16,7 @@ const Profile = ({
 }) => {
   useEffect(() => {
     getProfileById(match.params.id);
-  }, [getProfileById]);
+  }, [getProfileById, match.params.id]);
 
   return (
     <Fragment>
@@ -28,11 +30,17 @@ const Profile = ({
           {auth.isAuthenticated &&
             !auth.loading &&
             auth.user._id === profile.user._id && (
-              <Button as={Link} to="/edit-profile" variant="light">
+              <Button
+                as={Link}
+                to="/edit-profile"
+                variant="primary"
+                className="ml-3"
+              >
                 Edit your profile
               </Button>
             )}
-          Profile
+          <ProfileTop profile={profile} />
+          <ProfileAbout profile={profile} />
         </Fragment>
       )}
     </Fragment>

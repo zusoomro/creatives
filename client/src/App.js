@@ -13,9 +13,10 @@ import EditProfile from './components/profile-forms/EditProfile';
 import Container from 'react-bootstrap/Container';
 import Profiles from './components/profiles/Profiles';
 import Profile from './components/profile/Profile';
+import Posts from './components/posts/Posts';
+import Post from './components/post/Post';
 
 // Styling
-import { createGlobalStyle } from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Redux
@@ -46,11 +47,10 @@ const App = () => {
   return (
     <Provider store={store}>
       <Router>
-        <React.Fragment>
-          <GlobalStyle />
+        <div className="bg-dark min-vh-100 text-white">
           <NavbarComponent />
           <Route exact path="/" component={Landing} />
-          <Container className="my-5">
+          <Container style={{ paddingTop: 'calc(56px + 2rem)' }}>
             <AlertComponent />
             <Switch>
               <Route exact path="/register" component={Register} />
@@ -68,21 +68,14 @@ const App = () => {
                 component={EditProfile}
               />
               <Route exact path="/profiles" component={Profiles} />
+              <PrivateRoute exact path="/posts" component={Posts} />
+              <PrivateRoute exact path="/posts/:postId" component={Post} />
             </Switch>
           </Container>
-        </React.Fragment>
+        </div>
       </Router>
     </Provider>
   );
 };
 
 export default App;
-
-const GlobalStyle = createGlobalStyle`
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
-  }
-`;

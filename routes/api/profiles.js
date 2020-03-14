@@ -49,8 +49,6 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    console.log(req.body);
-
     // Destructure fields from the request
     const {
       year,
@@ -68,7 +66,7 @@ router.post(
     if (year) fields.year = year;
     if (bio) fields.bio = bio;
     if (skills) {
-      fields.skills = skills.split(', ').map(skill => skill.trim());
+      fields.skills = skills.split(',').map(skill => skill.trim());
     }
 
     // Build social object

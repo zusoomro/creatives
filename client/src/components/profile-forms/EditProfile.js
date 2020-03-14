@@ -33,12 +33,12 @@ const EditProfile = ({
     getCurrentProfile();
     setFormData({
       year: loading || !profile.year ? '' : profile.year,
-      skills: loading || !profile.skills ? '' : profile.skills.join(','),
+      skills: loading || !profile.skills ? '' : profile.skills.join(', '),
       bio: loading || !profile.bio ? '' : profile.bio,
-      soundcloud: loading || !profile.social ? '' : profile.soundcloud,
-      imgur: loading || !profile.social ? '' : profile.imgur,
-      instagram: loading || !profile.social ? '' : profile.instagram,
-      github: loading || !profile.social ? '' : profile.github
+      soundcloud: loading || !profile.social ? '' : profile.social.soundcloud,
+      imgur: loading || !profile.social ? '' : profile.social.imgur,
+      instagram: loading || !profile.social ? '' : profile.social.instagram,
+      github: loading || !profile.social ? '' : profile.social.github
     });
   }, [getCurrentProfile]);
 

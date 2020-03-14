@@ -33,7 +33,7 @@ const Login = ({ login, isAuthenticated }) => {
     <React.Fragment>
       <Form onSubmit={e => onSubmit(e)}>
         <h1>Login</h1>
-        <p className="lead"> Heyo, Login here! </p>
+        <p className="lead">Log in to your account here.</p>
 
         <Form.Group>
           <Form.Label>Email</Form.Label>

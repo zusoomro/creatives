@@ -15,6 +15,9 @@ const NavbarComponent = ({ auth: { isAuthenticated, loading }, logOut }) => {
       <Nav.Link as={Link} to="/dashboard">
         Dashboard
       </Nav.Link>
+      <Nav.Link as={Link} to="/posts">
+        Posts
+      </Nav.Link>
       <Nav.Link onClick={logOut}>Log Out</Nav.Link>
     </Nav>
   );
@@ -34,8 +37,9 @@ const NavbarComponent = ({ auth: { isAuthenticated, loading }, logOut }) => {
   );
 
   return (
-    <Navbar expand="sm" bg="dark" variant="dark">
-      <Navbar.Brand as={Link} to="/">
+    <Navbar fixed="top" expand="sm" bg="dark" variant="dark">
+      <Navbar.Brand as={Link} to="/" className="ml-2">
+        <i className="fas fa-headphones fa-lg mr-2"></i>
         Creatives
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />

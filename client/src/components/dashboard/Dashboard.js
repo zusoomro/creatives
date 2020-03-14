@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 // Bootstrap Components
 import Spinner from 'react-bootstrap/Spinner';
 import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 const Dashboard = ({
   getCurrentProfile,
@@ -24,17 +26,26 @@ const Dashboard = ({
     </Fragment>
   ) : (
     <Fragment>
-      <h1 className="mt-5">Dashboard</h1>
-      <p>
+      <h1>Dashboard</h1>
+      <p className="lead">
         <i className="fas fa-user"></i> Welcome, {user ? user.name : null}
       </p>
       {profile != null ? (
-        <Fragment>
-          <Link to="/edit-profile">Edit your Profile</Link>
-          <Button variant="danger" onClick={() => deleteAccount()}>
-            Delete Your Account
+        <div className="d-flex flex-column flex-sm-row align-items-sm-center ">
+          <Button className="mt-2" as={Link} to={`/profile/${user._id}`}>
+            View your profile
           </Button>
-        </Fragment>
+          <Button as={Link} className="ml-sm-3 mt-2" to="/edit-profile">
+            Edit your profile
+          </Button>
+          <Button
+            variant="danger"
+            className="ml-sm-3 mt-2"
+            onClick={() => deleteAccount()}
+          >
+            Delete your account
+          </Button>
+        </div>
       ) : (
         <Fragment>
           You have not yet set up a profile. Please add some info.{' '}

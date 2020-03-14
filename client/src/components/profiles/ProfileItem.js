@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Media from 'react-bootstrap/Media';
 import Card from 'react-bootstrap/Card';
+import Image from 'react-bootstrap/Image';
+import Button from 'react-bootstrap/Button';
 
 const ProfileItem = ({
   profile: {
@@ -12,21 +13,27 @@ const ProfileItem = ({
   }
 }) => {
   return (
-    <Card bg="light" className="flex-row my-3 p-3">
-      <img
-        width={64}
-        height={64}
-        className="m-1 mr-3"
-        src={avatar}
-        alt="Profile"
-      />
-      <Media.Body>
-        <h5>{name}</h5>
-        <p>{year}</p>
+    <Card bg="light" className="mt-3 p-3 text-dark">
+      <div className="d-flex flex-row">
+        <Image
+          rounded
+          width={96}
+          height={96}
+          className="m-1 mr-3"
+          src={avatar}
+          alt="Profile"
+        />
 
-        <Link to={`/profile/${_id}`}> View Profile </Link>
-        <p>{skills.toString()}</p>
-      </Media.Body>
+        <div className="flex-grow-1">
+          <h3 className="my-0">{name}</h3>
+          <p className="my-0 mb-2 text-muted">{year}</p>
+          <p className="lead">{skills.toString().replace(/,/g, ', ')}</p>
+        </div>
+      </div>
+      <hr className="p-0 mt-0 mb-2" />
+      <Link className="ml-2" to={`/profile/${_id}`}>
+        View Profile
+      </Link>
     </Card>
   );
 };

@@ -7,7 +7,11 @@ import ProfileItem from './ProfileItem';
 // Bootstrap Containers
 import Spinner from 'react-bootstrap/Spinner';
 
-const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
+const Profiles = ({
+  getProfiles,
+  profile: { profiles, loading },
+  className = 'text-black'
+}) => {
   useEffect(() => {
     getProfiles();
   }, [getProfiles]);
@@ -19,13 +23,15 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
         <Fragment>
           <h1>Profiles</h1>
           <p className="lead">Browse and connect with other creatives.</p>
-          {profiles.length > 0 ? (
-            profiles.map(profile => (
-              <ProfileItem key={profile._id} profile={profile} />
-            ))
-          ) : (
-            <p>There are no profiles to display</p>
-          )}
+          <div className="pb-3">
+            {profiles.length > 0 ? (
+              profiles.map(profile => (
+                <ProfileItem key={profile._id} profile={profile} />
+              ))
+            ) : (
+              <p>There are no profiles to display</p>
+            )}
+          </div>
         </Fragment>
       )}
     </Fragment>

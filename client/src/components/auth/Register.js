@@ -40,7 +40,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
     <React.Fragment>
       <Form onSubmit={e => onSubmit(e)}>
         <h1>Register</h1>
-        <p className="lead"> Heyo, register here! </p>
+        <p className="lead"> Create an account here. </p>
 
         <Form.Group>
           <Form.Label>Name</Form.Label>
