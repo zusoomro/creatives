@@ -13,9 +13,8 @@ A personal project of mine, Creatives is a social media website where contractor
 - Make comments
 - Update your profile
 
-## TODO
+## TODO=
 
-- style alerts
-- add theme
-- create a mobile layout
-- delete styled components out of server package.json
+- delete uninstall unneeded dependencies
+- clear up warnings
+- add feature list on landing page

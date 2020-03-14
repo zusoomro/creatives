@@ -49,33 +49,31 @@ const App = () => {
       <Router>
         <div className="bg-dark min-vh-100 text-white">
           <NavbarComponent />
-          <Route exact path="/" component={Landing} />
-          <Container style={{ paddingTop: 'calc(56px + 2rem)' }}>
-            <AlertComponent />
-            <Switch>
-              <Route exact path="/register" component={Register} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/profile/:id" component={Profile} />
-              <PrivateRoute exact path="/dashboard" component={Dashboard} />
-              <PrivateRoute
-                exact
-                path="/create-profile"
-                component={CreateProfile}
-              />
-              <PrivateRoute
-                exact
-                path="/edit-profile"
-                component={EditProfile}
-              />
-              <Route exact path="/profiles" component={Profiles} />
-              <PrivateRoute exact path="/posts" component={Posts} />
-              <PrivateRoute exact path="/posts/:postId" component={Post} />
-            </Switch>
-          </Container>
+          <Switch>
+            <Route exact path="/" component={Landing} />
+            <Route component={DefaultContainer} />
+          </Switch>
         </div>
       </Router>
     </Provider>
   );
 };
+
+const DefaultContainer = () => (
+  <Container style={{ paddingTop: 'calc(56px + 2rem)' }}>
+    <AlertComponent />
+    <Switch>
+      <Route exact path="/register" component={Register} />
+      <Route exact path="/login" component={Login} />
+      <Route exact path="/profile/:id" component={Profile} />
+      <PrivateRoute exact path="/dashboard" component={Dashboard} />
+      <PrivateRoute exact path="/create-profile" component={CreateProfile} />
+      <PrivateRoute exact path="/edit-profile" component={EditProfile} />
+      <Route exact path="/profiles" component={Profiles} />
+      <PrivateRoute exact path="/posts" component={Posts} />
+      <PrivateRoute exact path="/posts/:postId" component={Post} />
+    </Switch>
+  </Container>
+);
 
 export default App;

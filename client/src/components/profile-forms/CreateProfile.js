@@ -54,6 +54,9 @@ const CreateProfile = ({ createProfile, history }) => {
             value={skills}
             onChange={e => onChange(e)}
           />
+          <Form.Text className="text-muted">
+            Please enter your skills as a list of comma-separated-values (CSV).
+          </Form.Text>
         </Form.Group>
 
         <Form.Group>
